@@ -27,6 +27,11 @@
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+    input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+    padding: 0; /* 체크박스 안쪽 여백 제거 */
+    }
     button {
       background-color: #2195f394;
       color: white;
@@ -47,14 +52,13 @@
       appearance: none;  /* 기본 라디오 버튼 숨기기 */
       width: 18px;
       height: 18px;
-      border: 2px solid #4CAF50;
       border-radius: 50%;
       cursor: pointer;
       position: relative;
     }
     .radio-group input[type="radio"]:hover {
-      border-color: #2196f3;
-      box-shadow: 0 0 4px rgba(33,150,243,0.6);
+      border-color: lightblue;
+      background-color: lightblue;
     }
     .radio-group input[type="radio"]:checked {
       background-color: #4CAF50;

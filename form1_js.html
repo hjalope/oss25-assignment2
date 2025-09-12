@@ -8,27 +8,28 @@
 <body>	
 <div class="main-panel">
   <h1>컴퓨터공학부 학생 정보 </h1>
+  <form onsubmit="return submitForm(event)">
   <div class="row">
     <div class="form-group">
-      <label>이름 : </label>
-      <input type="text" />
+      <label for="username">이름 : </label>
+      <input type="text" id="name" name="username" required />
     </div>
   </div>
   <div class="row">
     <div class="form-group">
       <label>전화번호 : </label>
-      <input type="text" />
+      <input type="text" required/>
     </div>
     <div class="form-group">
       <label>이메일 : </label>
-      <input type="email" />
+      <input type="email" required/>
     </div>
   </div>
   <div class="row">
     <div class="form-group">
       <label>좋아하는 언어 : </label>
       <div>
-        <select>
+        <select id="language">
           <option>선택</option>
           <option>HTML</option>
           <option>CSS</option>
@@ -46,9 +47,9 @@
     <div class="form-group">
       <label>성별</label>
       <div>
-        <input type="radio" name="g" />
+        <input type="radio" name="gender" />
         남성
-        <input type="radio" name="g" />
+        <input type="radio" name="gender" />
         여성 
       </div>
     </div>
@@ -61,7 +62,6 @@
     <div class="form-group">
       <label>관심분야</label>
       <div>
-        <!-- Front-end 체크박스에 id 추가 -->
         <input type="checkbox" id="frontend" />
         Front-end
         <input type="checkbox" id="backend" />
@@ -75,22 +75,28 @@
   </div>
   <div class="row">
     <div class="form-group">
+        <label>오늘의 기분을 알려주세요:)</label>
+        <div class="range-group">
+          <span>😢</span>
+          <!-- onchange 이벤트 -->
+          <input type="range" min="0" max="100" value="50"
+                 onchange="console.log('현재 기분 점수: ' + this.value)">
+          <span>😊</span>
+        </div>
+        
       <label>하고싶은 말 : </label>
       <textarea style="height: 50px;"></textarea>
-      <br>
-      <div class="form-group">
-      <label>지금 기분을 알려주세요:)</label>
-      <input type="range">
-    </div>
     </div>
   </div>
   <div class="row">
+    <!-- onclick 이벤트 + confirm -->
     <button type="submit">전송</button>
   </div>
 </div>
 
-<!-- dor tooltip -->
+<!-- tooltip -->
 <div class="tooltip" id="tooltip"></div>
+</form>
 
 <script>
   const tooltip = document.getElementById("tooltip");
@@ -123,6 +129,21 @@
       tooltip.style.display = "none";
     });
   });
+
+  // 버튼 클릭 시 confirm 사용
+  function submitForm(event) {
+    // required를 충족한 뒤에 제출
+    const userName = document.getElementById("name").value;
+
+    if (confirm('제출하시겠습니까?')) {
+      alert(userName + ' 학생의 정보가 전송되었습니다!');
+      return true;  // 충족되면 제대로 제출
+    } else {
+      alert('취소되었습니다.');
+      event.preventDefault(); // 충족 안되면 제출 막기
+      return false;
+    }
+  }
 </script>
 
 </body>

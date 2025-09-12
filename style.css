@@ -66,6 +66,15 @@ button {
     font-size: 12px;
     z-index: 100;
   }
+  .range-group {
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	gap: 10px;           /* 이모티콘과 슬라이더 사이 간격 */
+  }
+  
+  .range-group input[type="range"] {
+	flex: 1;   /* 남은 공간을 다 차지하게 */
+  }
 /* Mobile Version */
 @media screen and (max-width: 600px) {
 .row {

@@ -6,7 +6,7 @@
 <link href="style.css" rel="stylesheet" />
 </head>
 <body>	
-<div class="main-panel">
+<fieldset class="main-panel">
   <h1>컴퓨터공학부 학생 정보 </h1>
   <form onsubmit="return submitForm(event)">
   <div class="row">
@@ -18,43 +18,41 @@
   <div class="row">
     <div class="form-group">
       <label>전화번호 : </label>
-      <input type="text" required/>
+      <input type="text" name="phone" required/>
     </div>
     <div class="form-group">
       <label>이메일 : </label>
-      <input type="email" required/>
+      <input type="email" name="email" required/>
     </div>
   </div>
   <div class="row">
     <div class="form-group">
-      <label>좋아하는 언어 : </label>
-      <div>
-        <select id="language">
-          <option>선택</option>
-          <option>HTML</option>
-          <option>CSS</option>
-          <option>Java</option>
-          <option>PYTHON</option>
-        </select>
-      </div>
+      <label for="lang">좋아하는 언어 :</label>
+        <input list="languages" id="lang" name="lang" placeholder="프로그래밍언어 입력">
+        <datalist id="languages">
+          <option value="HTML">
+          <option value="CSS">
+          <option value="Java">
+          <option value="Python">
+        </datalist>
     </div>
+  </div>
+  <div class="row">
     <div class="form-group">
       <label>생년월일</label>
-      <input type="date" />
+      <input type="date" name="birth" />
     </div>
   </div>
   <div class="row">
     <div class="form-group">
       <label>성별</label>
       <div>
-        <input type="radio" name="gender" />
-        남성
-        <input type="radio" name="gender" />
-        여성 
+        <input type="radio" name="gender" value="male" /> 남성
+        <input type="radio" name="gender" value="female" /> 여성 
       </div>
     </div>
     <div class="form-group">
-      <label>사진</label>
+      <label>사진 (선택)</label>
       <input type="file" />
     </div>
   </div>
@@ -62,14 +60,10 @@
     <div class="form-group">
       <label>관심분야</label>
       <div>
-        <input type="checkbox" id="frontend" />
-        Front-end
-        <input type="checkbox" id="backend" />
-        Back-end
-        <input type="checkbox" id="application"/>
-        Application
-        <input type="checkbox" id="security" />
-        Security 
+        <input type="checkbox" id="frontend" name="interest" value="frontend" /> Front-end
+        <input type="checkbox" id="backend" name="interest" value="backend" /> Back-end
+        <input type="checkbox" id="application" name="interest" value="application"/> Application
+        <input type="checkbox" id="security" name="interest" value="security" /> Security 
       </div>
     </div>
   </div>
@@ -78,25 +72,24 @@
         <label>오늘의 기분을 알려주세요:)</label>
         <div class="range-group">
           <span>😢</span>
-          <!-- onchange 이벤트 -->
           <input type="range" min="0" max="100" value="50"
+                 name="mood"
                  onchange="console.log('현재 기분 점수: ' + this.value)">
           <span>😊</span>
         </div>
         
       <label>하고싶은 말 : </label>
-      <textarea style="height: 50px;"></textarea>
+      <textarea name="message" style="height: 50px;"></textarea>
     </div>
   </div>
   <div class="row">
-    <!-- onclick 이벤트 + confirm -->
     <button type="submit">전송</button>
   </div>
-</div>
+</form>
+</fieldset>
 
 <!-- tooltip -->
 <div class="tooltip" id="tooltip"></div>
-</form>
 
 <script>
   const tooltip = document.getElementById("tooltip");
@@ -114,7 +107,7 @@
     const element = document.getElementById(id);
 
     element.addEventListener("mouseover", (e) => {
-      tooltip.textContent = descriptions[id]; // id에 맞는 설명 넣기
+      tooltip.textContent = descriptions[id];
       tooltip.style.display = "block";
       tooltip.style.left = e.pageX + 10 + "px";
       tooltip.style.top = e.pageY + 10 + "px";
@@ -132,15 +125,14 @@
 
   // 버튼 클릭 시 confirm 사용
   function submitForm(event) {
-    // required를 충족한 뒤에 제출
     const userName = document.getElementById("name").value;
 
     if (confirm('제출하시겠습니까?')) {
       alert(userName + ' 학생의 정보가 전송되었습니다!');
-      return true;  // 충족되면 제대로 제출
+      return true;
     } else {
       alert('취소되었습니다.');
-      event.preventDefault(); // 충족 안되면 제출 막기
+      event.preventDefault();
       return false;
     }
   }

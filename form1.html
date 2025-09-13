@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width" />
 </head>
 <body>	
-<div class="main-panel">
   <h1>컴퓨터공학부 학생 정보 </h1>
+<fieldset class="main-panel">
   <div class="row">
     <div class="form-group">
       <label>이름 : </label>
@@ -25,15 +25,14 @@
   </div>
   <div class="row">
     <div class="form-group">
-      <label>좋아하는 언어 : </label>
-      <div>
-        <select>
-          <option>Select...</option>
-          <option>HTML</option>
-          <option>CSS</option>
-          <option>Java</option>
-          <option>PYTHON</option>
-        </select>
+      <label for="lang">좋아하는 언어 :</label>
+        <input list="languages" id="lang" name="lang" placeholder="프로그래밍언어 입력">
+        <datalist id="languages">
+          <option value="HTML">
+          <option value="CSS">
+          <option value="Java">
+          <option value="Python">
+        </datalist>
       </div>
     </div>
     <div class="form-group">
@@ -51,7 +50,7 @@
         여성 </div>
     </div>
     <div class="form-group">
-      <label>사진</label>
+      <label>사진 (선택)</label>
       <input type="file" />
     </div>
   </div>
@@ -69,6 +68,8 @@
         Security </div>
     </div>
   </div>
+  <label>지금 기분을 알려주세요:)</label>
+  <input type="range">
   <div class="row">
     <div class="form-group">
       <label>하고싶은 말 : </label>
@@ -78,6 +79,6 @@
   <div class="row">
     <button type="submit">전송</button>
   </div>
-</div>
+</fieldset>
 </body>
 </html>
